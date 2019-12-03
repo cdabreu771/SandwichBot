@@ -69,142 +69,134 @@ earthquake
 voyage
 feast	
 year
-factory reset button
-blood rage
+factory Reset Button
+blood Rage
 idiot
 toaster
 legend
-death wish
+death Wish
 therapy
-goal in life
-marketing idea
+goal in Life
+marketing Idea
 psychic
 knife
 sandwich
-hunting ground
+hunting Ground
 lettuce
 kitty
-friendly grandma
-french chef
-antidepressant drug
+friendly Grandma
+french Chef
+antidepressant Drug
 corn cake
-president of the night
-candlestick maker
-coffee pot
+president of the Night
+candlestick Maker
+coffee Pot
 brethren
-national security agency
+national Security Agency
 tank
-useless brakes
-international law enforcement agency
-sound barrier
-skinny woman
-private investor
-main people
-stock car
-elastic band
-whole blood
+useless Brakes
+international Law Enforcement Agency
+sound Barrier
+skinny Woman
+private Investor
+main People
+stock Car
+elastic Band
+whole Blood
 telephone
-mad cow disease
-scourge upon the earth
-rough-skinned newt
+mad Cow Disease
+scourge Upon the Earth
+rough-Skinned Newt
 karate
 pistol
-legal warrant
-people who are hurt
-idea he suggested
-party of the first part
-place of business
-double fault
-kitty cat
-famous landscape painting
-hairy legs
-old irish cottage
-pocket flask
-liquid oxygen
-laser beams
-preventive strike
-dingle berry
-reading party
-generalized bond
-indirect expression
+legal Warrant
+people Who Are hHurt
+idea He Suggested
+party of the First Part
+place of Business
+double Fault
+kitty Cat
+famous Landscape Painting
+hairy Legs
+old Irish Cottage
+pocket Flask
+liquid Oxygen
+laser Beams
+preventive Strike
+reading Party
+generalized Bond
+indirect Expression
 messiness
-love of her life
-trust fund
-volcanic crater
-travel guidebook
-electric furnace
-internal respiration
-police squad
-mad-dog skullcap
-sneaky criminal
-new version
-keepsake machete
-gaming laptop
-hissy fit
-dog poop
+love of Her Life
+trust Fund
+volcanic Crater
+travel Guidebook
+electric Furnace
+internal Respiration
+police Squad
+mad-dog Skullcap
+sneaky Criminal
+new Version
+keepsake Machete
+gaming Laptop
+hissy Fit
 dragon
 mediation
 patrolman
-pervert
-toilet seat
-haunted graveyard
-really tough guy
-twinkling uncleanness
+haunted Graveyard
+really Tough Guy
+twinkling Uncleanness
 wrinkle
-personal credit line
-multi-billionaire
-mental disorder
-sweet tailpipe
-boiling water
-deer antler
-background story
-striped hyena
-weed whacker
-backstabbing misfortune
-bad striped hyena
-bat-shit crazy Amish folk
-beautiful elastic band
-best failure
-big-bellied bad mood
-bitchy peace offering
-bloody indignation
-bone-chilling legal warrant
-boring heartbreak
-bottle-conditioned trainer
-bottled sweet tailpipe
-brainless ways of the world
-brewery-fresh sleazeball
-bright-eyed double fault
-brokenhearted druggie
-bull-headed lover
-busty descending color
-buxom personality
-cask-conditioned freak
-cat-friendly reading party
-caught-in-the-act jackass
-chauvinistic pup
-cheap natural history
-cheeky keepsake machete
-cheerful toilet seat
-chilled good-for-nothing
-chunky drug addict
-cocky matrimonial law
-cold-hearted Eskimo
-colored snuggle bug
-colossal love of her life
-comforting grouch
-comic divergent thinking
-common toilet seat
-compassionate bad mood
-complex guilt
-confrontational freak
-considerate louse
-contemporary queen
-content dirtbag
-control-top light bulb
-corrupt broken promises
-craft-brewed police squad
-crappy lack of morality
-crate-trained mood
-crawly mistake
-crazed master
+personal Credit Line
+multi-Billionaire
+sweet Tailpipe
+boiling Water
+deer Antler
+background Story
+striped Hyena
+weed Whacker
+backstabbing Misfortune
+elastic Band
+best Failure
+big-Bellied Bad Mood
+bitchy Peace Offering
+bloody Indignation
+bone-Chilling Legal Warrant
+boring Heartbreak
+bottle-Conditioned Trainer
+bottled Sweet Tailpipe
+brainless Ways of the World
+brewery-Fresh Sleazeball
+bright-Eyed Double Fault
+brokenhearted Druggie
+bull-Headed Lover
+busty Descending Color
+buxom Personality
+cask-Conditioned Freak
+cat-Friendly Reading Party
+caught-in-the-Act Jackass
+chauvinistic Pup
+cheap Natural History
+cheeky Keepsake Machete
+cheerful Toilet Seat
+chilled Good-For-Nothing
+chunky Drug Addict
+cocky Matrimonial Law
+cold-Hearted Eskimo
+colored Snuggle Bug
+colossal Love of her Life
+comforting Grouch
+comic Divergent Thinking
+compassionate Bad Mood
+complex Guilt
+confrontational Freak
+considerate Louse
+contemporary Queen
+content Dirtbag
+control-Top Light Bulb
+corrupt Broken Promises
+craft-Brewed Police Squad
+crappy Lack of Morality
+crate-Trained Mood
+crawly Mistake
+crazed Master

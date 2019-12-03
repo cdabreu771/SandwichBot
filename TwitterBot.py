@@ -4,8 +4,9 @@ Created on Nov 14, 2019
 @author: Camille
 '''
 
+import os
+import random
 import tweepy
-import glob
 import time
 from PIL import Image, ImageFont, ImageDraw, ImageFilter
 import textwrap
@@ -23,11 +24,31 @@ class TwitterAPI():
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
         auth.set_access_token(access_token, access_token_secret)
         self.api = tweepy.API(auth)
+        ####self.follow()
+        ####self.retweet()
         
     #def tweet(self, tweet):
         #api = tweepy.API(self._authorization)
         
+    def follow(self):
+        for follower in tweepy.Cursor(self.api.followers).items():    
+            follower.follow() 
+    
+    def retweet(self):
+        search = "sandwich"
+        numberOfTweets = 3
 
+        for tweet in tweepy.Cursor(self.api.search, search).items(numberOfTweets):    
+            try:        
+                tweet.retweet()        
+                print('Retweeted the tweet')
+
+            except tweepy.TweepError as e:        
+                print(e.reason)
+
+            except StopIteration:        
+                break   
+    
 class Bot:
     def __init__(self, twitter_api, tweets_per_hour = 60):
         
@@ -74,118 +95,94 @@ class Bot:
                 line = line.strip()
                 self.noun_array.append(line)
                 
+        self.hashtag_array = ["#sandwich", "#sandwichtime", "#lunchtime", "#lunch", "#whatsforlunch", "#dinner", "#dinnertime", "#whatsfordinner", "#drool", "#meatsweats", "#food", "#foodporn", "#foodie", "#yummy", "#delicious", "#foodgasm", "#cheese", "#foodlover", "#foodblogger", "#sandwichlover", "#tasty"]
+                
         self.sleep_timer = int(60*60/tweets_per_hour)
         
     def get_tweet(self):
         tweet = ''
-        seed(1)
-        meatInt=randint(0,len(self.meat_array))
-        cheeseInt = randint(0,len(self.cheese_array))
-        toppingInt = randint(0,len(self.topping_array))
-        breadInt = randint(0,len(self.bread_array))
+        seed()
+        meatInt=randint(0,len(self.meat_array)-1)
+        cheeseInt = randint(0,len(self.cheese_array)-1)
+        toppingInt = randint(0,len(self.topping_array)-1)
+        breadInt = randint(0,len(self.bread_array)-1)
         
-        meatNum = randint(1,4)
-        cheeseNum = randint(0,2)
-        toppingNum = randint(1,5)
+        meatNum = randint(0,2)
+        cheeseNum = randint(0,1)
+        toppingNum = randint(1,3)
+        if meatNum!=0:
+            tweet = self.meat_array[randint(0,len(self.meat_array)-1)].capitalize()
         
-        tweet = self.meat_array[meatInt].capitalize() + " with " + self.cheese_array[cheeseInt] + " cheese and " + self.topping_array[toppingInt] + ", " + self.topping_array[toppingInt] + ", and " + self.topping_array[toppingInt] + " on " + self.bread_array[breadInt] + "."
-        wrapper = textwrap.TextWrapper(width=50) 
+            for i in range(meatNum - 2):
+                tweet += ", " + self.meat_array[randint(0,len(self.meat_array)-1)]
+        
+            tweet += " with "
+            
+        if cheeseNum!=0:
+            tweet += self.cheese_array[randint(0,len(self.cheese_array)-1)] + " cheese, and "
+        
+        tweet += self.topping_array[randint(0,len(self.topping_array)-1)]
+        for i in range(toppingNum -1):
+            tweet += ", " + self.topping_array[randint(0,len(self.topping_array)-1)]
+        
+        
+        tweet += " on " + self.bread_array[breadInt] + "."
+       
+        wrapper = textwrap.TextWrapper(width=45) 
         string = wrapper.fill(text=tweet) 
         return string 
     
     def get_name(self):
         name = ''
-        seed(1)
-        adjectiveInt = randint(0,len(self.adjective_array))
-        nounInt = randint(0,len(self.noun_array))
-        name = "The " + self.adjective_array[adjectiveInt].capitalize()  + " " + self.noun_array[nounInt].capitalize()
-        return name
-            
+        seed()
+        name = "The " + self.adjective_array[randint(0,len(self.adjective_array)-1)].capitalize()  + " " + self.noun_array[randint(0,len(self.noun_array)-1)].capitalize()
+        wrapper = textwrap.TextWrapper(width=45) 
+        string = wrapper.fill(text=name) 
+        return string
+        
+    
+    def get_hashtags(self):
+        hashtags = ''
+        seed()
+        hashtagNum = randint(2,4)
+        for i in range(hashtagNum):
+            hashtags += self.hashtag_array[randint(0,len(self.hashtag_array)-1)] + " "
+        return hashtags
+    
     def run(self):
         
         while True:
            
             name = self.get_name()
             tweet = self.get_tweet()
-            self.get_image_tweet(tweet, name)
-            #tweet = self.get_image_tweet(tweet)
-            #self.twitter_api.tweet(tweet)
+            hashtags = self.get_hashtags()
+            self.get_image_tweet(tweet,name,hashtags)
             print("sleeping")
             time.sleep(self.sleep_timer) #Every 10 minutes
         
+        
+    def get_image_tweet(self,tweet,name,hashtags):
+    
+        root_image_path = "/Users/Camille/Documents/COEN296B/FinalProject/Images/"
+        images_files = os.listdir(root_image_path)
+        single_image = random.sample(images_files, 1)[0]
+        image = Image.open(root_image_path + single_image)
         """
-        # This is the font selected to write in
-        font = ImageFont.truetype("/Users/Camille/Library/Fonts/MontserratAlternates-Medium.otf", 25)
-        # This creates a red box image
-        img = Image.new("RGBA", (200,200), (120,20,20))
-        # This draws the red box
-        draw = ImageDraw.Draw(img)
-        # This creates the text
-        draw.text((0,0), "This is a test", (255,255,0), font=font)
-        # This draws the text on to the image
-        draw = ImageDraw.Draw(img)
-        # This saves the image as a .png
-        img.save("a_test.png")
+        image = Image.open("/Users/Camille/Documents/COEN296B/FinalProject/Images/image1.png")
         """
-    def get_image_tweet(self,tweet,name):
-        #images = glob.glob("/Users/Camille/Documents/COEN296B/FinalProject/Images/")
-        #image = images[random.randint(0,len(images))-1]
-        image = Image.open("/Users/Camille/Documents/COEN296B/FinalProject/Images/sandwich1.jpg")
         image = image.copy()
         image.putalpha(128)
-        font = ImageFont.truetype("/Users/Camille/Library/Fonts/MontserratAlternates-Black.otf", 8)
+        font = ImageFont.truetype("/Library/Fonts/Arial Black.ttf", 130)
         # draw the image
         draw = ImageDraw.Draw(image)
-        draw.text((10,10), name, (0,0,0), font=font)
-        draw = ImageDraw.Draw(image)
-        draw.text((10,30), tweet, (0,0,0), font=font)
+        draw.text((10,10), name, (0,0,0), font=font,)
         draw = ImageDraw.Draw(image)
         
-        #draw.text((10,30), "Use " + meat_array[4] + " with " + cheese_array[6] + "." (0,0,0), font = font)
-       # draw = ImageDraw.Draw(image)
+        font = ImageFont.truetype("/Library/Fonts/Arial Bold.ttf", 110)
+        draw.text((20,120), tweet, (0,0,0), font=font)
+        draw = ImageDraw.Draw(image)
         image.save('transparentCopy.png')
-        status = self.twitter_api.api.update_with_media("transparentCopy.png")
-        
-        # This posts the image
-        #status = self.api.update_with_media("transparentCopy.png")
-        #print (tweet)
-        
-        #print("sleeping")
-        #time.sleep(15) #Tweet every 15 minutes
-       # time.sleep(1)
-        
-        #post = randomimagetwitt()
-        
-        
-        
-            
-        """
-        # open image using image path
-        #image = Image.open("/Users/Camille/Documents/COEN296B/FinalProject/Images/sandwich1.jpg")
-        # make copy of image so that it is not replaced
-        image = image.copy()
-        # set the alpha (transparency level) of the image
-        image.putalpha(128)
-        # select font for the text
-        font = ImageFont.truetype("/Users/Camille/Library/Fonts/MontserratAlternates-Black.otf", 14)
-        # draw the image
-        draw = ImageDraw.Draw(image)
-        
-   
-        
-        draw.text((10,10), "This is a test recipe.", (0,0,0), font=font)
-        draw = ImageDraw.Draw(image)
-            
-        draw.text((10,30), "This is only a test.", (0,0,0), font = font)
-        draw = ImageDraw.Draw(image)
-            
-        #draw.text((30,80), "This is a test recipe. It is only a test", (0, 0, 0), font = font)
-        # draw the text onto the image
-        
-        # save the image
-        image.save('transparentCopy.png')
-        """
-        
+        status = self.twitter_api.api.update_with_media("transparentCopy.png",hashtags)
         
         
             
