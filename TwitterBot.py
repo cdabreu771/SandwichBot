@@ -14,6 +14,7 @@ from random import seed
 from random import randint
 
 
+
 class TwitterAPI():
     def __init__(self):
             
@@ -36,7 +37,7 @@ class TwitterAPI():
     
     def retweet(self):
         search = "sandwich"
-        numberOfTweets = 3
+        numberOfTweets = 2
 
         for tweet in tweepy.Cursor(self.api.search, search).items(numberOfTweets):    
             try:        
@@ -130,12 +131,12 @@ class Bot:
             tweet += " with "
             
         if cheeseNum!=0:
-            tweet += self.cheese_array[randint(0,len(self.cheese_array)-1)] + " cheese, and "
+            tweet += self.cheese_array[randint(0,len(self.cheese_array)-1)] + " cheese, "
             
         tweet += self.vegetable_array[randint(0,len(self.vegetable_array)-1)]
         for i in range(vegNum -1):
             tweet += ", " + self.vegetable_array[randint(0,len(self.vegetable_array)-1)]
-        tweet += ", and "
+        tweet += ", "
     
         tweet += self.topping_array[randint(0,len(self.topping_array)-1)]
         for i in range(toppingNum -1):
@@ -144,7 +145,7 @@ class Bot:
         
         tweet += " on " + self.bread_array[breadInt] + "."
        
-        wrapper = textwrap.TextWrapper(width=40) 
+        wrapper = textwrap.TextWrapper(width=35) 
         string = wrapper.fill(text=tweet) 
         return string 
     
@@ -152,11 +153,10 @@ class Bot:
         name = ''
         seed()
         name = "The " + self.adjective_array[randint(0,len(self.adjective_array)-1)].title()  + " " + self.noun_array[randint(0,len(self.noun_array)-1)].title()
-        wrapper = textwrap.TextWrapper(width=45) 
+        wrapper = textwrap.TextWrapper(width=35) 
         string = wrapper.fill(text=name) 
         return string
         
-    
     def get_hashtags(self):
         hashtags = ''
         seed()
@@ -181,25 +181,34 @@ class Bot:
         
         root_image_path = "/Users/Camille/Documents/COEN296B/FinalProject/BugImages/"
         images_files = os.listdir(root_image_path)
+        if '.DS_Store' in images_files:
+            images_files.remove('.DS_Store')  
         
         """
         image = Image.open(root_image_path + single_image)
         """
         image = Image.open("/Users/Camille/Documents/COEN296B/FinalProject/Images/sandwich12.png")
         image = image.copy()
-        image.putalpha(128)
+        image.putalpha(90)
         draw = ImageDraw.Draw(image)
-        randnum=randint(1,3)
-        
-        picnicBugs = Image.open("/Users/Camille/Documents/COEN296B/FinalProject/BugImages/bug1.png")
-        newsize = (400,400)
+         
+        picnicBugs = Image.open("/Users/Camille/Documents/COEN296B/FinalProject/picnic.png")
+        newsize = (600,600)
         picnicBugs = picnicBugs.resize(newsize)
-        image.paste(picnicBugs, (20,700),picnicBugs)
+        image.paste(picnicBugs, (20,500), picnicBugs)
         draw = ImageDraw.Draw(image)
+        
+        ants = Image.open("/Users/Camille/Documents/COEN296B/FinalProject/antSandwich.png")
+        newsize = (250,250)
+        ants = ants.resize(newsize)
+        image.paste(ants, (650,800), ants)
+        draw = ImageDraw.Draw(image)
+        
+        randnum=randint(2,3)
         
         for i in range(randnum):
-            randXloc=randint(450,1950)
-            randYloc=randint(800,1000)
+            randXloc=randint(900,1800)
+            randYloc=randint(800,950)
             single_image = random.sample(images_files, 1)[0]
             littleBug = Image.open(root_image_path + single_image)
             newsize = (200,200)
@@ -207,14 +216,14 @@ class Bot:
             image.paste(littleBug, (randXloc, randYloc), littleBug)
             draw = ImageDraw.Draw(image)
         
-        font = ImageFont.truetype("/Library/Fonts/Arial Black.ttf", 100)
+        font = ImageFont.truetype("/Library/Fonts/Courier New Bold.ttf", 90)
         # draw the image
         
         draw.text((10,10), name, (0,0,0), font=font)
         draw = ImageDraw.Draw(image)
         
-        font = ImageFont.truetype("/Library/Fonts/Arial Bold.ttf", 85)
-        draw.text((20,300), tweet, (0,0,0), font=font)
+        font = ImageFont.truetype("/System/Library/Fonts/Courier.dfont", 85)
+        draw.text((20,250), tweet, (0,0,0), font=font)
         draw = ImageDraw.Draw(image)
         image.save('transparentCopy.png')
         status = self.twitter_api.api.update_with_media("transparentCopy.png",hashtags)
