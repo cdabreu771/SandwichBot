@@ -1,38 +1,37 @@
 rye
 toasted rye
 sourdough
-sourdough roll
+a sourdough roll
 focaccia
-Hawaiian roll
+a Hawaiian roll
 white bread
 toasted white bread
 cracked wheat
-white roll
-potato
+a white roll
 whole wheat
 10 grain
 sprouted grains
-oatmeal
+oatmeal bread
 pumpernickel
 ciabatta
-Italian roll
+an Italian roll
 French baguette
-Kaiser roll
-hamburger bun
-hot dog bun
-slider bun
+a Kaiser roll
+a hamburger bun
+a hot dog bun
+a slider bun
 pita
-hoagie
-flour tortilla
-whole wheat tortilla
-biscuit
-bagel
-english muffin
+a hoagie
+a flour tortilla
+a whole wheat tortilla
+a biscuit
+a bagel
+an english muffin
 potato bread
-croissant
+a croissant
 dutch crunch
-wheat roll
-onion bun
+a wheat roll
+an onion bun
 herb focaccia
-wheat wrap
-spinach wrap
+a wheat wrap
+a spinach wrap

@@ -1,1 +1,31 @@
-lettuce, tomato, avocado, carrot, cucumber, roasted red pepper, sautéed mushroom, mixed peppers, jalapeño, eggplant, squash, coleslaw, cabbage, butter lettuce, spinach, alfalfa sprouts, red onion, sweet pickles, dill pickles, bread and butter pickles, muffuletta spread, olives, beets, corn, pickled red cabbage, arugula, spring onion, pineapple, apple, pear
+lettuce
+tomato
+avocado
+carrot
+cucumber
+roasted red pepper
+sautéed mushroom
+mixed peppers
+jalapeño
+eggplant
+squash
+coleslaw
+cabbage
+butter lettuce
+spinach
+alfalfa sprouts
+red onion
+sweet pickles
+dill pickles
+bread and butter pickles
+muffuletta spread
+olives
+beets
+corn
+pickled red cabbage
+arugula
+spring onion
+pineapple
+apple
+pear
+capers

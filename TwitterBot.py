@@ -75,7 +75,13 @@ class Bot:
                 line = line.strip()
                 self.cheese_array.append(line)
            # print(cheese_array)
-            
+           
+        self.vegetable_array = []
+        with open('vegetable.txt') as f:
+            for line in f:
+                line = line.strip()
+                self.vegetable_array.append(line)
+               
         self.topping_array = []
         with open('topping.txt') as f:
             for line in f:
@@ -104,12 +110,17 @@ class Bot:
         seed()
         meatInt=randint(0,len(self.meat_array)-1)
         cheeseInt = randint(0,len(self.cheese_array)-1)
+        vegInt = randint(0,len(self.vegetable_array)-1)
         toppingInt = randint(0,len(self.topping_array)-1)
         breadInt = randint(0,len(self.bread_array)-1)
         
         meatNum = randint(0,2)
         cheeseNum = randint(0,1)
-        toppingNum = randint(1,3)
+        if meatNum == 0:
+            vegNum = randint(1,3)
+        else:
+            vegNum = randint(1,2)
+        toppingNum = randint(1,2)
         if meatNum!=0:
             tweet = self.meat_array[randint(0,len(self.meat_array)-1)].capitalize()
         
@@ -120,7 +131,12 @@ class Bot:
             
         if cheeseNum!=0:
             tweet += self.cheese_array[randint(0,len(self.cheese_array)-1)] + " cheese, and "
-        
+            
+        tweet += self.vegetable_array[randint(0,len(self.vegetable_array)-1)]
+        for i in range(vegNum -1):
+            tweet += ", " + self.vegetable_array[randint(0,len(self.vegetable_array)-1)]
+        tweet += ", and "
+    
         tweet += self.topping_array[randint(0,len(self.topping_array)-1)]
         for i in range(toppingNum -1):
             tweet += ", " + self.topping_array[randint(0,len(self.topping_array)-1)]
@@ -128,14 +144,14 @@ class Bot:
         
         tweet += " on " + self.bread_array[breadInt] + "."
        
-        wrapper = textwrap.TextWrapper(width=45) 
+        wrapper = textwrap.TextWrapper(width=40) 
         string = wrapper.fill(text=tweet) 
         return string 
     
     def get_name(self):
         name = ''
         seed()
-        name = "The " + self.adjective_array[randint(0,len(self.adjective_array)-1)].capitalize()  + " " + self.noun_array[randint(0,len(self.noun_array)-1)].capitalize()
+        name = "The " + self.adjective_array[randint(0,len(self.adjective_array)-1)].title()  + " " + self.noun_array[randint(0,len(self.noun_array)-1)].title()
         wrapper = textwrap.TextWrapper(width=45) 
         string = wrapper.fill(text=name) 
         return string
@@ -162,24 +178,43 @@ class Bot:
         
         
     def get_image_tweet(self,tweet,name,hashtags):
-    
-        root_image_path = "/Users/Camille/Documents/COEN296B/FinalProject/Images/"
+        
+        root_image_path = "/Users/Camille/Documents/COEN296B/FinalProject/BugImages/"
         images_files = os.listdir(root_image_path)
-        single_image = random.sample(images_files, 1)[0]
+        
+        """
         image = Image.open(root_image_path + single_image)
         """
-        image = Image.open("/Users/Camille/Documents/COEN296B/FinalProject/Images/image1.png")
-        """
+        image = Image.open("/Users/Camille/Documents/COEN296B/FinalProject/Images/sandwich12.png")
         image = image.copy()
         image.putalpha(128)
-        font = ImageFont.truetype("/Library/Fonts/Arial Black.ttf", 130)
-        # draw the image
         draw = ImageDraw.Draw(image)
-        draw.text((10,10), name, (0,0,0), font=font,)
+        randnum=randint(1,3)
+        
+        picnicBugs = Image.open("/Users/Camille/Documents/COEN296B/FinalProject/BugImages/bug1.png")
+        newsize = (400,400)
+        picnicBugs = picnicBugs.resize(newsize)
+        image.paste(picnicBugs, (20,700),picnicBugs)
         draw = ImageDraw.Draw(image)
         
-        font = ImageFont.truetype("/Library/Fonts/Arial Bold.ttf", 110)
-        draw.text((20,120), tweet, (0,0,0), font=font)
+        for i in range(randnum):
+            randXloc=randint(450,1950)
+            randYloc=randint(800,1000)
+            single_image = random.sample(images_files, 1)[0]
+            littleBug = Image.open(root_image_path + single_image)
+            newsize = (200,200)
+            littleBug=littleBug.resize(newsize)
+            image.paste(littleBug, (randXloc, randYloc), littleBug)
+            draw = ImageDraw.Draw(image)
+        
+        font = ImageFont.truetype("/Library/Fonts/Arial Black.ttf", 100)
+        # draw the image
+        
+        draw.text((10,10), name, (0,0,0), font=font)
+        draw = ImageDraw.Draw(image)
+        
+        font = ImageFont.truetype("/Library/Fonts/Arial Bold.ttf", 85)
+        draw.text((20,300), tweet, (0,0,0), font=font)
         draw = ImageDraw.Draw(image)
         image.save('transparentCopy.png')
         status = self.twitter_api.api.update_with_media("transparentCopy.png",hashtags)
