@@ -20,10 +20,10 @@ This class handles the TwitterAPI and authenticates the twitter account.
 class TwitterAPI():
     def __init__(self):
             
-        consumer_key = '3NS3A2hmvYmtokJf7qgBlu1wa'
-        consumer_secret = 'Ywxwe11hBBLwIS0JhNbJqXTxSfnXUoCeMlpvFjVCuhFXHvR73x'
-        access_token = '1195079549307899904-g4IzyUcpbmGo8jLNPjAwNhode15lpF'
-        access_token_secret = '7cqYSd5uNM3K4CzQAQtoM9kfcHsWhli1yuJ2i8xx6I54R'
+        consumer_key = #removed for github privacy
+        consumer_secret = #removed for github privacy
+        access_token = #removed for github privacy
+        access_token_secret = #removed for github privacy
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
         auth.set_access_token(access_token, access_token_secret)
         self.api = tweepy.API(auth)
